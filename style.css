@@ -31,9 +31,24 @@ body{
 }
 .sketchpad{
     background-color: #111720;
-    width: 800px;
-    height: 500px;
+    width:520px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.rows{
+    display: flex;
+}
+.grid{
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+
 .footer{
     display: flex;
     justify-content: center;
@@ -47,7 +62,6 @@ body{
     font-size: 16px;
 
 }
-
 .footer a{
     text-decoration: none;
     color: white;
