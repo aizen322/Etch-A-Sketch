@@ -28,7 +28,48 @@ body{
     background-color: #111720;
     width: 300px;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
 }
+.color-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#colorPicker{
+    height: 100px;
+    width: 100px;
+    padding: 0px;
+    border-style: none;
+    background-color:transparent;
+}
+.slider-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.color-container p, .slider-container p{
+    font-size: 20px;
+    color: #fac650;
+}
+
+
+#clear{
+    padding: 10px 80px;
+    font-size: 20px;
+    color: #fac650;
+    border: 2px solid #fac650;
+    background-color: transparent;
+}
+#clear:hover{
+    background-color:#1F2937;
+}
+
 .sketchpad{
     background-color: #111720;
     width:520px;
