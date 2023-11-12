@@ -1,5 +1,8 @@
 
-let sketchPadSize = 16;
+const DEFAULT_SIZE = 16;
+
+
+let sketchPadSize = DEFAULT_SIZE;
 
 
 function setSize(size){
@@ -9,6 +12,8 @@ function setSize(size){
 
 window.onload = () =>{
     generateGrid(sketchPadSize);
+    draw();
+    clear();
 }
 
 /** **************************************************************/
@@ -29,9 +34,10 @@ function updateSliderValue(value){
 function changeSize(gridSize){
     updateSliderValue(gridSize);
     sketchpad.innerHTML ="";
-
     setSize(gridSize);
     generateGrid(gridSize);
+    draw();
+    clear();
 }
 
 
@@ -48,31 +54,37 @@ function generateGrid(gridSize){
 /** **************************************************************/
 /**** PEN COLORING FUNCTION */
 
-const grid = document.querySelectorAll('div.grid');
-let isMouseDown = false;
-let penColor = document.getElementById('colorPicker');
+function draw(){
+    const grid = document.querySelectorAll('div.grid');
+    let isMouseDown = false;
+    let penColor = document.getElementById('colorPicker');
+    grid.forEach((pixel) =>{
+        pixel.addEventListener('mousedown',()=>{
+            pixel.style.backgroundColor = penColor.value;
+            isMouseDown = true;
+        });
+        pixel.addEventListener('mouseup',()=>{
+            pixel.style.backgroundColor = penColor.value;
+            isMouseDown = false;
+        });
+        pixel.addEventListener('mousemove', ()=>{
+            if(isMouseDown)
+            pixel.style.backgroundColor = penColor.value;
+        });
+    });
 
-grid.forEach((pixel) =>{
-    pixel.addEventListener('mousedown',()=>{
-        pixel.style.backgroundColor = penColor.value;
-        isMouseDown = true;
-    });
-    pixel.addEventListener('mouseup',()=>{
-        pixel.style.backgroundColor = penColor.value;
-        isMouseDown = false;
-    });
-    pixel.addEventListener('mousemove', ()=>{
-        if(isMouseDown)
-        pixel.style.backgroundColor = penColor.value;
-    });
-});
+}
 
 /** **************************************************************/
 /**** CLEAR FUNCTION BUTTON */
-const clearbtn = document.getElementById("clear");
-clearbtn.addEventListener('click',()=>{
-    grid.forEach((pixel)=>{
-        pixel.style.backgroundColor = "white";
-    })
-});
+function clear(){
+    const grid = document.querySelectorAll('div.grid');
+    const clearbtn = document.getElementById("clear");
+    clearbtn.addEventListener('click',()=>{
+        grid.forEach((pixel)=>{
+            pixel.style.backgroundColor = "white";
+        })
+    });
+}
+
 
